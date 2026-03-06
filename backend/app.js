@@ -9,6 +9,7 @@ app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
   "https://taskmanger-id3rhdp2c-bumbleb-ees-projects.vercel.app",
+  "https://taskmanger-ashen.vercel.app",
 ];
 app.use(
   cors({
