@@ -2,7 +2,7 @@ import Sidebar from "./Sidebar";
 
 export default function Layout({ children }) {
     return (
-        <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-secondary)', width: '100%' }}>
+        <div style={{ display: 'flex', minHeight: '100vh', width: '100%' }}>
             <Sidebar />
             <main style={{
                 flex: 1,
