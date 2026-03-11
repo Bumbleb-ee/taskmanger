@@ -35,13 +35,10 @@ export default function TaskForm({ initialData, onSubmit, onCancel }) {
             zIndex: 50,
             padding: '1rem'
         }}>
-            <div className="glass-panel" style={{
-                backgroundColor: 'var(--bg-primary)',
+            <div className="tf-card" style={{
                 padding: '2rem',
-                borderRadius: 'var(--radius-lg)',
                 width: '100%',
                 maxWidth: '500px',
-                boxShadow: 'var(--shadow-lg)'
             }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                     <h2 style={{ fontSize: '1.25rem', fontWeight: '600', color: 'var(--text-primary)' }}>
@@ -59,7 +56,7 @@ export default function TaskForm({ initialData, onSubmit, onCancel }) {
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                         <label style={{ fontSize: '0.875rem', fontWeight: '500', color: 'var(--text-secondary)' }}>Title</label>
-                        <input
+                        <input className="tf-input"
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
@@ -70,7 +67,7 @@ export default function TaskForm({ initialData, onSubmit, onCancel }) {
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                         <label style={{ fontSize: '0.875rem', fontWeight: '500', color: 'var(--text-secondary)' }}>Description</label>
-                        <textarea
+                        <textarea className="tf-input"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             rows={3}
@@ -82,7 +79,7 @@ export default function TaskForm({ initialData, onSubmit, onCancel }) {
                     <div style={{ display: 'flex', gap: '1rem' }}>
                         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                             <label style={{ fontSize: '0.875rem', fontWeight: '500', color: 'var(--text-secondary)' }}>Priority</label>
-                            <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                            <select className="tf-input" value={priority} onChange={(e) => setPriority(e.target.value)}>
                                 <option value="low">Low</option>
                                 <option value="medium">Medium</option>
                                 <option value="high">High</option>
@@ -91,7 +88,7 @@ export default function TaskForm({ initialData, onSubmit, onCancel }) {
 
                         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                             <label style={{ fontSize: '0.875rem', fontWeight: '500', color: 'var(--text-secondary)' }}>Due Date (Optional)</label>
-                            <input
+                            <input className="tf-input"
                                 type="date"
                                 value={dueDate}
                                 onChange={(e) => setDueDate(e.target.value)}
@@ -100,10 +97,10 @@ export default function TaskForm({ initialData, onSubmit, onCancel }) {
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '1rem' }}>
-                        <button type="button" className="btn-secondary" onClick={onCancel}>
+                        <button type="button" className="tf-btn-ghost" onClick={onCancel}>
                             Cancel
                         </button>
-                        <button type="submit" className="btn-primary">
+                        <button type="submit" className="tf-btn-primary">
                             {initialData ? "Save Changes" : "Create Task"}
                         </button>
                     </div>

@@ -13,33 +13,29 @@ export default function MeshBackground() {
         window.addEventListener("resize", resize);
 
         let t = 0;
-        const orbs = [
-            { x: 0.15, y: 0.25, r: 0.42, color: "15,23,42" },
-            { x: 0.82, y: 0.18, r: 0.38, color: "99,102,241" },
-            { x: 0.5, y: 0.82, r: 0.48, color: "6,182,212" },
-            { x: 0.08, y: 0.72, r: 0.32, color: "139,92,246" },
-            { x: 0.92, y: 0.88, r: 0.36, color: "34,211,238" },
-        ];
 
         const draw = () => {
-            t += 0.003;
-            const { width: w, height: h } = canvas;
-            ctx.fillStyle = "#020817";
-            ctx.fillRect(0, 0, w, h);
-            orbs.forEach((o, i) => {
-                const ox = (o.x + Math.sin(t + i * 1.3) * 0.1) * w;
-                const oy = (o.y + Math.cos(t + i * 0.9) * 0.09) * h;
-                const r = o.r * Math.min(w, h);
-                const g = ctx.createRadialGradient(ox, oy, 0, ox, oy, r);
-                g.addColorStop(0, `rgba(${o.color},0.16)`);
-                g.addColorStop(1, `rgba(${o.color},0)`);
-                ctx.fillStyle = g;
-                ctx.fillRect(0, 0, w, h);
-            });
-            ctx.strokeStyle = "rgba(99,102,241,0.035)";
-            ctx.lineWidth = 1;
-            for (let x = 0; x < w; x += 64) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
-            for (let y = 0; y < h; y += 64) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+            t += 0.005;
+            const { width, height } = canvas;
+
+            // clear canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // soft dot grid
+            ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+            const spacing = 32;
+
+            const offsetX = (t * 10) % spacing;
+            const offsetY = (t * 5) % spacing;
+
+            for (let x = -spacing; x < width + spacing; x += spacing) {
+                for (let y = -spacing; y < height + spacing; y += spacing) {
+                    ctx.beginPath();
+                    ctx.arc(x + offsetX, y + offsetY, 1, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
             animRef.current = requestAnimationFrame(draw);
         };
         animRef.current = requestAnimationFrame(draw);
@@ -49,6 +45,7 @@ export default function MeshBackground() {
     return (
         <canvas ref={canvasRef} style={{
             position: "fixed", inset: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none",
+            background: "var(--bg-secondary)"
         }} />
     );
 }

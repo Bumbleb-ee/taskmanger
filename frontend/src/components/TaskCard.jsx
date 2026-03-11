@@ -21,9 +21,8 @@ export default function TaskCard({ task, onUpdate, onDelete, onEdit }) {
     const isCompleted = task.status === "completed";
 
     return (
-        <div className="glass-panel" style={{
+        <div className="tf-card" style={{
             padding: '1.25rem',
-            borderRadius: 'var(--radius-md)',
             display: 'flex',
             flexDirection: 'column',
             gap: '0.75rem',
@@ -34,12 +33,10 @@ export default function TaskCard({ task, onUpdate, onDelete, onEdit }) {
             onMouseOver={(e) => {
                 if (!isCompleted) {
                     e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = 'var(--shadow-md)';
                 }
             }}
             onMouseOut={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
             }}
         >
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
